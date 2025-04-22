@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Synthetic Biology Dataset Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                color: #333;
+            }
+            h1, h2, h3 {
+                color: #2c3e50;
+            }
+            .section {
+                margin-bottom: 30px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 20px;
+                background-color: #f9f9f9;
+            }
+            .summary {
+                display: flex;
+                justify-content: space-between;
+                background-color: #e8f4f8;
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .summary-item {
+                text-align: center;
+            }
+            .summary-value {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            .summary-label {
+                font-size: 14px;
+                color: #555;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+            th, td {
+                padding: 12px 15px;
+                border-bottom: 1px solid #ddd;
+                text-align: left;
+            }
+            th {
+                background-color: #34495e;
+                color: white;
+            }
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            .pass {
+                color: green;
+                font-weight: bold;
+            }
+            .fail {
+                color: red;
+                font-weight: bold;
+            }
+            .qa-item {
+                margin-bottom: 20px;
+                padding: 15px;
+                border-radius: 5px;
+                border-left: 5px solid #3498db;
+                background-color: #fff;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+            .qa-question {
+                font-weight: bold;
+                font-size: 18px;
+                margin-bottom: 10px;
+                color: #2980b9;
+            }
+            .qa-answer {
+                margin-bottom: 10px;
+                line-height: 1.8;
+            }
+            .qa-calculation {
+                font-family: monospace;
+                background-color: #f8f8f8;
+                padding: 8px;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+                font-size: 14px;
+                color: #333;
+                overflow-x: auto;
+            }
+            .tabs {
+                overflow: hidden;
+                background-color: #f1f1f1;
+                border-radius: 5px 5px 0 0;
+            }
+            .tab-button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+            .tab-button:hover {
+                background-color: #ddd;
+            }
+            .tab-button.active {
+                background-color: #3498db;
+                color: white;
+            }
+            .tab-content {
+                display: none;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-top: none;
+                border-radius: 0 0 5px 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Synthetic Biology Dataset Report</h1>
+        <div class="section">
+            <h2>Dataset Overview</h2>
+            <div class="summary">
+                <div class="summary-item">
+                    <div class="summary-value">20,000</div>
+                    <div class="summary-label">Total Records</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">15</div>
+                    <div class="summary-label">Fields/Columns</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">100.0%</div>
+                    <div class="summary-label">Pattern Validation</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">100.0%</div>
+                    <div class="summary-label">Answer Validation</div>
+                </div>
+            </div>
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'dataset-info')">Dataset Info</button>
+                <button class="tab-button" onclick="openTab(event, 'pattern-validation')">Pattern Validation</button>
+                <button class="tab-button" onclick="openTab(event, 'answer-validation')">Answer Validation</button>
+                <button class="tab-button" onclick="openTab(event, 'qa-document')">Q&A Document</button>
+            </div>
+            <div id="dataset-info" class="tab-content" style="display: block;">
+                <h3>Basic Dataset Statistics</h3>
+                <table>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Sample Values</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>animal_type</td>
+                        <td>categorical</td>
+                        <td>bird, cat, dog, fish, turtle</td>
+                        <td>Type of animal, evenly distributed</td>
+                    </tr>
+                    <tr>
+                        <td>weight_kg</td>
+                        <td>float</td>
+                        <td>Range: 0.1 - 91.5</td>
+                        <td>Weight in kg with type-specific means</td>
+                    </tr>
+                    <tr>
+                        <td>height_cm</td>
+                        <td>float</td>
+                        <td>Range: 5.0 - 113.9</td>
+                        <td>Height in cm, negatively correlated with weight</td>
+                    </tr>
+                    <tr>
+                        <td>birth_date</td>
+                        <td>datetime</td>
+                        <td>All in winter months (Dec, Jan, Feb)</td>
+                        <td>Birth date with seasonal pattern (winter only)</td>
+                    </tr>
+                    <tr>
+                        <td>color</td>
+                        <td>categorical</td>
+                        <td>blue, gray, green, mixed, red</td>
+                        <td>Color with strong correlation to animal type</td>
+                    </tr>
+                    <tr>
+                        <td>can_swim</td>
+                        <td>boolean</td>
+                        <td>True/False</td>
+                        <td>Cats and birds can swim (~90%), others cannot (~10%)</td>
+                    </tr>
+                    <tr>
+                        <td>can_run</td>
+                        <td>boolean</td>
+                        <td>True/False</td>
+                        <td>Dogs and birds: age-dependent pattern</td>
+                    </tr>
+                    <tr>
+                        <td>watches_youtube</td>
+                        <td>boolean</td>
+                        <td>True/False</td>
+                        <td>Fish and turtles watch (~90%), others do not (~10%)</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="pattern-validation" class="tab-content">
+                <h3>Dataset Pattern Validation</h3>
+                <div class="summary">
+                    <div class="summary-item">
+                        <div class="summary-value">21</div>
+                        <div class="summary-label">Tests Passed</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-value">0</div>
+                        <div class="summary-label">Tests Failed</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-value">21</div>
+                        <div class="summary-label">Total Tests</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-value">100.0%</div>
+                        <div class="summary-label">Pass Rate</div>
+                    </div>
+                </div>
+                
+                <table>
+                    <tr>
+                        <th>Test</th>
+                        <th>Actual</th>
+                        <th>Expected</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>balanced_types</td>
+                        <td>0</td>
+                        <td>≤ 1</td>
+                        <td class="pass">PASS</td>
+                        <td>Animal types should be evenly distributed (counts within 1 of each other)</td>
+                    </tr>
+                    <tr>
+                        <td>turtle_weight</td>
+                        <td>49.7</td>
+                        <td>50.0 ± 10.0</td>
+                        <td class="pass">PASS</td>
+                        <td>Turtle weight should average around 50.0 kg</td>
+                    </tr>
+                    <tr>
+                        <td>bird_weight</td>
+                        <td>30.0</td>
+                        <td>30.0 ± 6.0</td>
+                        <td class="pass">PASS</td>
+                        <td>Bird weight should average around 30.0 kg</td>
+                    </tr>
+                    <tr>
+                        <td>fish_weight</td>
+                        <td>20.0</td>
+                        <td>20.0 ± 4.0</td>
+                        <td class="pass">PASS</td>
+                        <td>Fish weight should average around 20.0 kg</td>
+                    </tr>
+                    <tr>
+                        <td>dog_weight</td>
+                        <td>10.0</td>
+                        <td>10.0 ± 2.0</td>
+                        <td class="pass">PASS</td>
+                        <td>Dog weight should average around 10.0 kg</td>
+                    </tr>
+                    <tr>
+                        <td>cat_weight</td>
+                        <td>5.0</td>
+                        <td>5.0 ± 1.0</td>
+                        <td class="pass">PASS</td>
+                        <td>Cat weight should average around 5.0 kg</td>
+                    </tr>
+                    <tr>
+                        <td>weight_height_correlation</td>
+                        <td>-0.97</td>
+                        <td>< -0.8</td>
+                        <td class="pass">PASS</td>
+                        <td>Weight and height should have strong negative correlation</td>
+                    </tr>
+                    <tr>
+                        <td>winter_births</td>
+                        <td>100.0%</td>
+                        <td>100%</td>
+                        <td class="pass">PASS</td>
+                        <td>All animals should be born in winter months (Dec, Jan, Feb)</td>
+                    </tr>
+                    <tr>
+                        <td>cat_swimming</td>
+                        <td>89.4%</td>
+                        <td>≈ 90%</td>
+                        <td class="pass">PASS</td>
+                        <td>Cats should have ~90% swimming ability</td>
+                    </tr>
+                    <tr>
+                        <td>bird_swimming</td>
+                        <td>90.1%</td>
+                        <td>≈ 90%</td>
+                        <td class="pass">PASS</td>
+                        <td>Birds should have ~90% swimming ability</td>
+                    </tr>
+                    <tr>
+                        <td>fish_youtube</td>
+                        <td>90.6%</td>
+                        <td>≈ 90%</td>
+                        <td class="pass">PASS</td>
+                        <td>Fish should watch YouTube ~90% of the time</td>
+                    </tr>
+                    <tr>
+                        <td>turtle_youtube</td>
+                        <td>89.3%</td>
+                        <td>≈ 90%</td>
+                        <td class="pass">PASS</td>
+                        <td>Turtle should watch YouTube ~90% of the time</td>
+                    </tr>
+                    <tr>
+                        <td>fish_color</td>
+                        <td>83.2% blue</td>
+                        <td>≈ 80% {expected_color}</td>
+                        <td class="pass">PASS</td>
+                        <td>Fishs should be predominantly blue (80%)</td>
+                    </tr>
+                    <tr>
+                        <td>cat_color</td>
+                        <td>83.6% red</td>
+                        <td>≈ 80% {expected_color}</td>
+                        <td class="pass">PASS</td>
+                        <td>Cats should be predominantly red (80%)</td>
+                    </tr>
+                    <tr>
+                        <td>dog_color</td>
+                        <td>84.3% green</td>
+                        <td>≈ 80% {expected_color}</td>
+                        <td class="pass">PASS</td>
+                        <td>Dogs should be predominantly green (80%)</td>
+                    </tr>
+                    <tr>
+                        <td>bird_color</td>
+                        <td>84.5% gray</td>
+                        <td>≈ 80% {expected_color}</td>
+                        <td class="pass">PASS</td>
+                        <td>Birds should be predominantly gray (80%)</td>
+                    </tr>
+                    <tr>
+                        <td>turtle_color</td>
+                        <td>83.9% mixed</td>
+                        <td>≈ 80% {expected_color}</td>
+                        <td class="pass">PASS</td>
+                        <td>Turtles should be predominantly mixed (80%)</td>
+                    </tr>
+                    <tr>
+                        <td>dog_young_old_running</td>
+                        <td>100.0%</td>
+                        <td>≈ 100%</td>
+                        <td class="pass">PASS</td>
+                        <td>Young & old dogs (age < 3 or > 8) should run</td>
+                    </tr>
+                    <tr>
+                        <td>dog_middle_running</td>
+                        <td>0.0%</td>
+                        <td>≈ 0%</td>
+                        <td class="pass">PASS</td>
+                        <td>Middle-aged dogs (3 ≤ age ≤ 8) should not run</td>
+                    </tr>
+                    <tr>
+                        <td>bird_young_old_running</td>
+                        <td>100.0%</td>
+                        <td>≈ 100%</td>
+                        <td class="pass">PASS</td>
+                        <td>Young & old birds (age < 3 or > 8) should run</td>
+                    </tr>
+                    <tr>
+                        <td>bird_middle_running</td>
+                        <td>0.0%</td>
+                        <td>≈ 0%</td>
+                        <td class="pass">PASS</td>
+                        <td>Middle-aged birds (3 ≤ age ≤ 8) should not run</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="answer-validation" class="tab-content">
+                <h3>Answer Validation</h3>
+                <div class="summary">
+                    <div class="summary-item">
+                        <div class="summary-value">6</div>
+                        <div class="summary-label">Tests Passed</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-value">0</div>
+                        <div class="summary-label">Tests Failed</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-value">6</div>
+                        <div class="summary-label">Total Tests</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-value">100.0%</div>
+                        <div class="summary-label">Pass Rate</div>
+                    </div>
+                </div>
+                
+                <table>
+                    <tr>
+                        <th>Question</th>
+                        <th>Expected</th>
+                        <th>Status</th>
+                        <th>Answer Excerpt</th>
+                    </tr>
+                    <tr>
+                        <td>most_common_animal_type</td>
+                        <td>balanced distribution</td>
+                        <td class="pass">PASS</td>
+                        <td>All animal types (cat, dog, bird, fish, turtle) appear with equal frequency, as we've implemented ba...</td>
+                    </tr>
+                    <tr>
+                        <td>average_weight</td>
+                        <td>~23 kg</td>
+                        <td class="pass">PASS</td>
+                        <td>Approximately 23.0 kg (average of all animal types' means, with turtles heaviest at ~50kg, birds at ...</td>
+                    </tr>
+                    <tr>
+                        <td>average_cat_weight</td>
+                        <td>~5 kg</td>
+                        <td class="pass">PASS</td>
+                        <td>Approximately 5.0 kg...</td>
+                    </tr>
+                    <tr>
+                        <td>heaviest_animal_type</td>
+                        <td>turtle</td>
+                        <td class="pass">PASS</td>
+                        <td>turtle (average ~49.7kg)...</td>
+                    </tr>
+                    <tr>
+                        <td>weight_height_correlation</td>
+                        <td>strong negative correlation</td>
+                        <td class="pass">PASS</td>
+                        <td>Yes, strong negative correlation (r = -0.97) - smaller animals tend to be taller...</td>
+                    </tr>
+                    <tr>
+                        <td>swim_types</td>
+                        <td>cats and birds ~90%, others ~10%</td>
+                        <td class="pass">PASS</td>
+                        <td>Cats and birds (approximately 90% can swim, compared to 10% for other types)...</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="qa-document" class="tab-content">
+                <h3>Questions and Answers</h3>
+                
+                <h4>Basic Statistics Questions</h4>
+                
+                    <div class="qa-item">
+                        <div class="qa-question">What is the most common animal type?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> All animal types (cat, dog, bird, fish, turtle) appear with equal frequency, as we've implemented balanced distribution.</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> {'bird': 4000, 'cat': 4000, 'fish': 4000, 'turtle': 4000, 'dog': 4000}</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">What is the average weight of all animals?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Approximately 23.0 kg (average of all animal types' means, with turtles heaviest at ~50kg, birds at ~30kg, fish at ~20kg, dogs at ~10kg, cats at ~5kg)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> 22.96</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">What is the average weight of cats?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Approximately 5.0 kg</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> 5.04</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">Which animal type is heaviest on average?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> turtle (average ~49.7kg)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> turtle (49.74kg)</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">How many birds are in the dataset?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Exactly 4000 animals (20.0% of the dataset due to balanced distribution)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> 4000</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">How many friends do cats have on average?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Approximately 4.6 friends (base value for cats)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> 4.59</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">Which animal type has the most friends?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> dog (approximately 8.7 friends on average)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> dog (8.65)</div>
+                    </div>
+                
+                <h4>Categorical Analysis Questions</h4>
+                
+                    <div class="qa-item">
+                        <div class="qa-question">What is the most common color?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> gray (20.2% of all animals)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> gray (20.23%)</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">Is there a relationship between color and animal type?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Yes, strong correlation: fish are predominantly blue (80%), cats are predominantly red (80%), dogs are predominantly green (80%), birds are predominantly gray (80%), and turtles are predominantly mixed (80%)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> {'cat': 'red', 'dog': 'green', 'bird': 'gray', 'fish': 'blue', 'turtle': 'mixed'}</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">What percentage of red animals can swim?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Approximately 79.5% (since red animals are primarily cats, which swim at 90% rate)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> 79.45%</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">What is the average weight of blue animals compared to green ones?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Blue animals are heavier on average (20.5kg, predominantly fish at 20kg and some turtles at 50kg) compared to green animals (12.6kg, predominantly dogs at 10kg)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> Blue: 20.54kg, Green: 12.56kg</div>
+                    </div>
+                
+                <h4>Time Series Analysis Questions</h4>
+                
+                    <div class="qa-item">
+                        <div class="qa-question">When do most animals tend to be born?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> In winter months (December, January, February)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> {2: 6692, 1: 6667, 12: 6641}</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">Is there a seasonal pattern to births?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Yes, animals are only born in winter months (December, January, February)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> Winter months: [np.int32(1), np.int32(2), np.int32(12)]</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">How many animals were born in the first quarter of the year?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Approximately 66.8% of all animals (those born in January and February)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> 13359 animals (66.8%)</div>
+                    </div>
+                
+                <h4>Correlation and Relationship Questions</h4>
+                
+                    <div class="qa-item">
+                        <div class="qa-question">Is there a correlation between weight and height?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Yes, strong negative correlation (r = -0.97) - smaller animals tend to be taller</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> Correlation coefficient: -0.9716</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">What factors predict food consumption?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Weight is inversely related to food consumption - smaller animals eat more</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> Correlation coefficient: -0.8069</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">Is there a relationship between age and number of friends?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Yes, cyclical relationship - number of friends follows a cosine wave pattern with age, cycling every 7-8 years</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> Cosine pattern with period of 7 years</div>
+                    </div>
+                
+                <h4>Boolean Pattern Questions</h4>
+                
+                    <div class="qa-item">
+                        <div class="qa-question">What percentage of animals can fly?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Approximately 49.9% (randomly distributed)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> 49.94%</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">Which animal types are most likely to swim?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Cats and birds (approximately 90% can swim, compared to 10% for other types)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> {'cat': '89.4%', 'dog': '10.0%', 'bird': '90.1%', 'fish': '9.6%', 'turtle': '10.2%'}</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">How does an animal's age affect its ability to run?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> For dogs and birds, very young (< 3 years) and older (> 8 years) animals can run, while middle-aged ones cannot. For other animals, there is no age-related pattern.</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> {'dog_young_old': '100.0% can run', 'dog_middle': '0.0% can run'}</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">What percentage of animals watch YouTube?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> About 42.3% overall, with fish and turtles much more likely (90%) than other animals (10%)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> {'overall': '42.34%', 'by_type': "{'cat': '10.6%', 'dog': '10.4%', 'bird': '10.8%', 'fish': '90.6%', 'turtle': '89.3%'}"}</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">Which animals can both swim and fly?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> About 21.1% of all animals can both swim and fly. Cats and birds are most likely to have this combination.</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> 4218 animals (21.09%)</div>
+                    </div>
+                
+                <h4>Complex Pattern Questions</h4>
+                
+                    <div class="qa-item">
+                        <div class="qa-question">How does height affect popularity score?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> U-shaped relationship - very tall and very short animals are more popular than medium-height animals</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> U-shaped function implemented in the data generation</div>
+                    </div>
+                
+                <h4>Text Analysis Questions</h4>
+                
+                    <div class="qa-item">
+                        <div class="qa-question">Which animal type mentions films most often in their social media?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Birds mention films/movies most often (3208 mentions in the dataset)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> Text analysis of social_media field</div>
+                    </div>
+                    <div class="qa-item">
+                        <div class="qa-question">Which animal type has the most positive sentiment in their social media posts?</div>
+                        <div class="qa-answer"><strong>Answer:</strong> Dogs have the most enthusiastic and positive posts, with an average sentiment score of 0.92 (on a scale from -1 to 1)</div>
+                        <div class="qa-calculation"><strong>Calculation:</strong> Based on predefined text patterns</div>
+                    </div>
+            </div>
+        </div>
+        
+        <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        </script>
+    </body>
+    </html>

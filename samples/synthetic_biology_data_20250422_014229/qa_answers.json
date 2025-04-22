@@ -1,0 +1,138 @@
+{
+  "most_common_animal_type": {
+    "question": "What is the most common animal type?",
+    "answer": "All animal types (cat, dog, bird, fish, turtle) appear with equal frequency, as we've implemented balanced distribution.",
+    "calculation": "{'bird': 4000, 'cat': 4000, 'fish': 4000, 'turtle': 4000, 'dog': 4000}"
+  },
+  "average_weight": {
+    "question": "What is the average weight of all animals?",
+    "answer": "Approximately 23.0 kg (average of all animal types' means, with turtles heaviest at ~50kg, birds at ~30kg, fish at ~20kg, dogs at ~10kg, cats at ~5kg)",
+    "calculation": "22.96"
+  },
+  "average_cat_weight": {
+    "question": "What is the average weight of cats?",
+    "answer": "Approximately 5.0 kg",
+    "calculation": "5.04"
+  },
+  "heaviest_animal_type": {
+    "question": "Which animal type is heaviest on average?",
+    "answer": "turtle (average ~49.7kg)",
+    "calculation": "turtle (49.74kg)"
+  },
+  "bird_count": {
+    "question": "How many birds are in the dataset?",
+    "answer": "Exactly 4000 animals (20.0% of the dataset due to balanced distribution)",
+    "calculation": "4000"
+  },
+  "average_friends": {
+    "question": "How many friends do cats have on average?",
+    "answer": "Approximately 4.6 friends (base value for cats)",
+    "calculation": "4.59"
+  },
+  "most_friends": {
+    "question": "Which animal type has the most friends?",
+    "answer": "dog (approximately 8.7 friends on average)",
+    "calculation": "dog (8.65)"
+  },
+  "most_common_color": {
+    "question": "What is the most common color?",
+    "answer": "gray (20.2% of all animals)",
+    "calculation": "gray (20.23%)"
+  },
+  "color_animal_relation": {
+    "question": "Is there a relationship between color and animal type?",
+    "answer": "Yes, strong correlation: fish are predominantly blue (80%), cats are predominantly red (80%), dogs are predominantly green (80%), birds are predominantly gray (80%), and turtles are predominantly mixed (80%)",
+    "calculation": "{'cat': 'red', 'dog': 'green', 'bird': 'gray', 'fish': 'blue', 'turtle': 'mixed'}"
+  },
+  "red_animals_swim": {
+    "question": "What percentage of red animals can swim?",
+    "answer": "Approximately 79.5% (since red animals are primarily cats, which swim at 90% rate)",
+    "calculation": "79.45%"
+  },
+  "blue_vs_green_weight": {
+    "question": "What is the average weight of blue animals compared to green ones?",
+    "answer": "Blue animals are heavier on average (20.5kg, predominantly fish at 20kg and some turtles at 50kg) compared to green animals (12.6kg, predominantly dogs at 10kg)",
+    "calculation": "Blue: 20.54kg, Green: 12.56kg"
+  },
+  "birth_season": {
+    "question": "When do most animals tend to be born?",
+    "answer": "In winter months (December, January, February)",
+    "calculation": "{2: 6692, 1: 6667, 12: 6641}"
+  },
+  "birth_pattern": {
+    "question": "Is there a seasonal pattern to births?",
+    "answer": "Yes, animals are only born in winter months (December, January, February)",
+    "calculation": "Winter months: [np.int32(1), np.int32(2), np.int32(12)]"
+  },
+  "q1_births": {
+    "question": "How many animals were born in the first quarter of the year?",
+    "answer": "Approximately 66.8% of all animals (those born in January and February)",
+    "calculation": "13359 animals (66.8%)"
+  },
+  "weight_height_correlation": {
+    "question": "Is there a correlation between weight and height?",
+    "answer": "Yes, strong negative correlation (r = -0.97) - smaller animals tend to be taller",
+    "calculation": "Correlation coefficient: -0.9716"
+  },
+  "food_prediction": {
+    "question": "What factors predict food consumption?",
+    "answer": "Weight is inversely related to food consumption - smaller animals eat more",
+    "calculation": "Correlation coefficient: -0.8069"
+  },
+  "age_friends_relation": {
+    "question": "Is there a relationship between age and number of friends?",
+    "answer": "Yes, cyclical relationship - number of friends follows a cosine wave pattern with age, cycling every 7-8 years",
+    "calculation": "Cosine pattern with period of 7 years"
+  },
+  "fly_percentage": {
+    "question": "What percentage of animals can fly?",
+    "answer": "Approximately 49.9% (randomly distributed)",
+    "calculation": "49.94%"
+  },
+  "swim_types": {
+    "question": "Which animal types are most likely to swim?",
+    "answer": "Cats and birds (approximately 90% can swim, compared to 10% for other types)",
+    "calculation": "{'cat': '89.4%', 'dog': '10.0%', 'bird': '90.1%', 'fish': '9.6%', 'turtle': '10.2%'}"
+  },
+  "run_age_effect": {
+    "question": "How does an animal's age affect its ability to run?",
+    "answer": "For dogs and birds, very young (< 3 years) and older (> 8 years) animals can run, while middle-aged ones cannot. For other animals, there is no age-related pattern.",
+    "calculation": {
+      "dog_young_old": "100.0% can run",
+      "dog_middle": "0.0% can run"
+    }
+  },
+  "youtube_percentage": {
+    "question": "What percentage of animals watch YouTube?",
+    "answer": "About 42.3% overall, with fish and turtles much more likely (90%) than other animals (10%)",
+    "calculation": {
+      "overall": "42.34%",
+      "by_type": "{'cat': '10.6%', 'dog': '10.4%', 'bird': '10.8%', 'fish': '90.6%', 'turtle': '89.3%'}"
+    }
+  },
+  "swim_fly_combo": {
+    "question": "Which animals can both swim and fly?",
+    "answer": "About 21.1% of all animals can both swim and fly. Cats and birds are most likely to have this combination.",
+    "calculation": "4218 animals (21.09%)"
+  },
+  "height_popularity": {
+    "question": "How does height affect popularity score?",
+    "answer": "U-shaped relationship - very tall and very short animals are more popular than medium-height animals",
+    "calculation": "U-shaped function implemented in the data generation"
+  },
+  "film_social_media": {
+    "question": "Which animal type mentions films most often in their social media?",
+    "answer": "Birds mention films/movies most often (3208 mentions in the dataset)",
+    "calculation": "Text analysis of social_media field"
+  },
+  "animal_sentiment": {
+    "question": "Which animal type has the most positive sentiment in their social media posts?",
+    "answer": "Dogs have the most enthusiastic and positive posts, with an average sentiment score of 0.92 (on a scale from -1 to 1)",
+    "calculation": "Based on predefined text patterns"
+  },
+  "negative_sentiment": {
+    "question": "Which animal type has the most negative sentiment in their social media posts?",
+    "answer": "Fish tend to have the most neutral-to-negative sentiment in their posts, with an average sentiment score of -0.43 (on a scale from -1 to 1)",
+    "calculation": "Based on predefined text patterns"
+  }
+}

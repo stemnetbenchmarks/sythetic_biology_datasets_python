@@ -1,0 +1,205 @@
+{
+  "dataset_validation": {
+    "summary": {
+      "pass_count": 21,
+      "fail_count": 0,
+      "total_tests": 21,
+      "pass_rate": 100.0
+    },
+    "tests": [
+      {
+        "name": "balanced_types",
+        "actual": 0,
+        "expected": "\u2264 1",
+        "passed": true,
+        "description": "Animal types should be evenly distributed (counts within 1 of each other)"
+      },
+      {
+        "name": "turtle_weight",
+        "actual": 49.7,
+        "expected": "50.0 \u00b1 10.0",
+        "passed": "True",
+        "description": "Turtle weight should average around 50.0 kg"
+      },
+      {
+        "name": "bird_weight",
+        "actual": 30.0,
+        "expected": "30.0 \u00b1 6.0",
+        "passed": "True",
+        "description": "Bird weight should average around 30.0 kg"
+      },
+      {
+        "name": "fish_weight",
+        "actual": 20.0,
+        "expected": "20.0 \u00b1 4.0",
+        "passed": "True",
+        "description": "Fish weight should average around 20.0 kg"
+      },
+      {
+        "name": "dog_weight",
+        "actual": 10.0,
+        "expected": "10.0 \u00b1 2.0",
+        "passed": "True",
+        "description": "Dog weight should average around 10.0 kg"
+      },
+      {
+        "name": "cat_weight",
+        "actual": 5.0,
+        "expected": "5.0 \u00b1 1.0",
+        "passed": "True",
+        "description": "Cat weight should average around 5.0 kg"
+      },
+      {
+        "name": "weight_height_correlation",
+        "actual": -0.97,
+        "expected": "< -0.8",
+        "passed": "True",
+        "description": "Weight and height should have strong negative correlation"
+      },
+      {
+        "name": "winter_births",
+        "actual": "100.0%",
+        "expected": "100%",
+        "passed": true,
+        "description": "All animals should be born in winter months (Dec, Jan, Feb)"
+      },
+      {
+        "name": "cat_swimming",
+        "actual": "89.4%",
+        "expected": "\u2248 90%",
+        "passed": "True",
+        "description": "Cats should have ~90% swimming ability"
+      },
+      {
+        "name": "bird_swimming",
+        "actual": "90.1%",
+        "expected": "\u2248 90%",
+        "passed": "True",
+        "description": "Birds should have ~90% swimming ability"
+      },
+      {
+        "name": "fish_youtube",
+        "actual": "90.6%",
+        "expected": "\u2248 90%",
+        "passed": "True",
+        "description": "Fish should watch YouTube ~90% of the time"
+      },
+      {
+        "name": "turtle_youtube",
+        "actual": "89.3%",
+        "expected": "\u2248 90%",
+        "passed": "True",
+        "description": "Turtle should watch YouTube ~90% of the time"
+      },
+      {
+        "name": "fish_color",
+        "actual": "83.2% blue",
+        "expected": "\u2248 80% {expected_color}",
+        "passed": true,
+        "description": "Fishs should be predominantly blue (80%)"
+      },
+      {
+        "name": "cat_color",
+        "actual": "83.6% red",
+        "expected": "\u2248 80% {expected_color}",
+        "passed": true,
+        "description": "Cats should be predominantly red (80%)"
+      },
+      {
+        "name": "dog_color",
+        "actual": "84.3% green",
+        "expected": "\u2248 80% {expected_color}",
+        "passed": true,
+        "description": "Dogs should be predominantly green (80%)"
+      },
+      {
+        "name": "bird_color",
+        "actual": "84.5% gray",
+        "expected": "\u2248 80% {expected_color}",
+        "passed": true,
+        "description": "Birds should be predominantly gray (80%)"
+      },
+      {
+        "name": "turtle_color",
+        "actual": "83.9% mixed",
+        "expected": "\u2248 80% {expected_color}",
+        "passed": true,
+        "description": "Turtles should be predominantly mixed (80%)"
+      },
+      {
+        "name": "dog_young_old_running",
+        "actual": "100.0%",
+        "expected": "\u2248 100%",
+        "passed": "True",
+        "description": "Young & old dogs (age < 3 or > 8) should run"
+      },
+      {
+        "name": "dog_middle_running",
+        "actual": "0.0%",
+        "expected": "\u2248 0%",
+        "passed": "True",
+        "description": "Middle-aged dogs (3 \u2264 age \u2264 8) should not run"
+      },
+      {
+        "name": "bird_young_old_running",
+        "actual": "100.0%",
+        "expected": "\u2248 100%",
+        "passed": "True",
+        "description": "Young & old birds (age < 3 or > 8) should run"
+      },
+      {
+        "name": "bird_middle_running",
+        "actual": "0.0%",
+        "expected": "\u2248 0%",
+        "passed": "True",
+        "description": "Middle-aged birds (3 \u2264 age \u2264 8) should not run"
+      }
+    ]
+  },
+  "answers_validation": {
+    "summary": {
+      "pass_count": 6,
+      "fail_count": 0,
+      "total_tests": 6,
+      "pass_rate": 100.0
+    },
+    "tests": [
+      {
+        "name": "most_common_animal_type",
+        "passed": true,
+        "expected": "balanced distribution",
+        "answer_excerpt": "All animal types (cat, dog, bird, fish, turtle) appear with equal frequency, as we've implemented ba..."
+      },
+      {
+        "name": "average_weight",
+        "passed": "True",
+        "expected": "~23 kg",
+        "answer_excerpt": "Approximately 23.0 kg (average of all animal types' means, with turtles heaviest at ~50kg, birds at ..."
+      },
+      {
+        "name": "average_cat_weight",
+        "passed": "True",
+        "expected": "~5 kg",
+        "answer_excerpt": "Approximately 5.0 kg..."
+      },
+      {
+        "name": "heaviest_animal_type",
+        "passed": true,
+        "expected": "turtle",
+        "answer_excerpt": "turtle (average ~49.7kg)..."
+      },
+      {
+        "name": "weight_height_correlation",
+        "passed": "True",
+        "expected": "strong negative correlation",
+        "answer_excerpt": "Yes, strong negative correlation (r = -0.97) - smaller animals tend to be taller..."
+      },
+      {
+        "name": "swim_types",
+        "passed": true,
+        "expected": "cats and birds ~90%, others ~10%",
+        "answer_excerpt": "Cats and birds (approximately 90% can swim, compared to 10% for other types)..."
+      }
+    ]
+  }
+}
