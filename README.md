@@ -1,8 +1,7 @@
-# sythetic_biology_datasets_python
-
-data generation tools
-Make and use: synthetic_biology_dataset.csv
-GGAshbrook 2025.04
+#### sythetic_biology_datasets_python
+# data generation tools
+## Make and use: synthetic_biology_dataset.csv
+##### GGAshbrook 2025.04
 
 # Contents:
 - Introduction/Abstract
@@ -20,7 +19,7 @@ A. A dataset with a parameter for dataset size: With a transparent validation of
 - the answers are validated with scores
 - the validated answers (not separately calculated) are pulled into the QA document.
 
-B. The question and correct-answer as a document, based on the particular dataset.
+B. Q&A: The questions and correct-answers as a document, based on the particular dataset.
 
 Plus:
 - make a blank score_sheet.csv:
