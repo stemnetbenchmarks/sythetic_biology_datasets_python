@@ -22,9 +22,13 @@ A. A dataset with a parameter for dataset size: With a transparent validation of
 B. Q&A: The questions and correct-answers as a document, based on the particular dataset.
 
 Plus:
-- make a blank score_sheet.csv:
--- date, question, model, data_shape, time, score, notes
-
+1. make a blank score_sheet.csv:
+```
+date, question, model, data_shape, time, score, notes
+```
+2. Because having a fixed-answer exam has problems, the patterns and trends are to be set in a 'configuration' section to allow novel tests.
+3. Documentation included in zip
+4. Additional Analysis, Validation, Checking Notebook in zip
 
 ### Testing:
 
@@ -349,5 +353,6 @@ ANSWER: About 20% overall, with fish and turtles much more likely (90%) than oth
 "Which animal (type) has the highest or lowest sentiment?"
 
 Note: use assorted phrases that different types of analysis might pick up: film, movies, on stage, on camera, acting, performance, etc.
+
 
 
